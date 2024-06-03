@@ -3,3 +3,4 @@
 *.gpkg
 *.parquet
 *.qmd
+venv/

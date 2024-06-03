@@ -2,10 +2,13 @@ import pandas as pd
 import geopandas as gpd
 import plotly.express as px
 
-bho = pd.read_parquet('bho_q95_qmed_23-05-2024_altosaomarcos_ok_parquet.parquet')
+bho = pd.read_parquet('D:\\matheus.cgomes\\Documentos\\GitHub\\gis_automations\\data\\bho_q95_qmed_correc_29-05-2024_final_parquet_grafico.parquet')
 bho['cocursodag'] = bho['cocursodag'].astype(str)
 bho['cobacia'] = bho['cobacia'].astype(str)
 bho['cobacia_jus'] = bho['cobacia_jus'].astype(str)
+bho['cobacia_jus'] = bho['cobacia_jus'].str.rstrip('.0')
+
+bho.info(verbose=True)
 
 
 
@@ -66,6 +69,7 @@ graph.add_vline(x=12327.436831248671, line_width=3, line_dash="dash", line_color
 
 
 graph.show()
+
 
 
 

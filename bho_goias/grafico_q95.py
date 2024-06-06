@@ -2,7 +2,7 @@ import pandas as pd
 import geopandas as gpd
 import plotly.express as px
 
-bho = pd.read_parquet('D:\\matheus.cgomes\\Documentos\\GitHub\\gis_automations\\data\\bho_q95_qmed_correc_29-05-2024_final_parquet_grafico.parquet')
+bho = pd.read_csv('D:\\matheus.cgomes\\Documentos\\GitHub\\gis_automations\\data\\bho_q95_qmed_correc_03-06-2024_final_v3_FINAL.csv')
 bho['cocursodag'] = bho['cocursodag'].astype(str)
 bho['cobacia'] = bho['cobacia'].astype(str)
 bho['cobacia_jus'] = bho['cobacia_jus'].astype(str)
@@ -33,10 +33,10 @@ def filter_areamont(bho,cobacia,cocursodag):
 
     return filtered
 
-meiaponte = filter_areamont(bho,'86999513','86') #alterar aqui 
+meiaponte = filter_areamont(bho,'8696111','8696') #alterar aqui 
 
 
-teste = seleciona_jusante(meiaponte,'869999994') #alterar aqui = informe o cobacia a partir do qual deseja selcionar jusante
+teste = seleciona_jusante(meiaponte,'8696999998') #alterar aqui = informe o cobacia a partir do qual deseja selcionar jusante
 
 trechos_filtered = teste[['cobacia','nuareamont','new_q95_jan_ls', 'new_q95_fev_ls', 'new_q95_mar_ls',
        'new_q95_abr_ls', 'new_q95_mai_ls', 'new_q95_jun_ls', 'new_q95_jul_ls', 'new_q95_ago_ls',

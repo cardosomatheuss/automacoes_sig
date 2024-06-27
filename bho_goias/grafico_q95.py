@@ -2,7 +2,7 @@ import pandas as pd
 import geopandas as gpd
 import plotly.express as px
 
-bho = pd.read_csv('D:\\matheus.cgomes\\Documentos\\GitHub\\gis_automations\\data\\bho_q95_qmed_correc_03-06-2024_final_v3_FINAL.csv')
+bho = pd.read_csv('D:\\matheus.cgomes\\Documentos\\GitHub\\gis_automations\\data\\26-06-2024\\bho_goias_semad_linha_completa_26-06-2024.csv')
 bho['cocursodag'] = bho['cocursodag'].astype(str)
 bho['cobacia'] = bho['cobacia'].astype(str)
 bho['cobacia_jus'] = bho['cobacia_jus'].astype(str)
@@ -33,29 +33,29 @@ def filter_areamont(bho,cobacia,cocursodag):
 
     return filtered
 
-meiaponte = filter_areamont(bho,'8696111','8696') #alterar aqui 
+meiaponte = filter_areamont(bho,'8691611111','86916') #alterar aqui 
 
 
-teste = seleciona_jusante(meiaponte,'8696999998') #alterar aqui = informe o cobacia a partir do qual deseja selcionar jusante
+teste = seleciona_jusante(meiaponte,'8691696495') #alterar aqui = informe o cobacia a partir do qual deseja selcionar jusante
 
-trechos_filtered = teste[['cobacia','nuareamont','new_q95_jan_ls', 'new_q95_fev_ls', 'new_q95_mar_ls',
-       'new_q95_abr_ls', 'new_q95_mai_ls', 'new_q95_jun_ls', 'new_q95_jul_ls', 'new_q95_ago_ls',
-       'new_q95_set_ls', 'new_q95_out_ls', 'new_q95_nov_ls', 'new_q95_dez_ls']]
+trechos_filtered = teste[['cobacia','nuareamont','q95_jan', 'q95_fev', 'q95_mar',
+       'q95_abr', 'q95_mai', 'q95_jun', 'q95_jul', 'q95_ago',
+       'q95_set', 'q95_out', 'q95_nov', 'q95_dez']]
 
 melted_trechos = pd.melt(trechos_filtered,id_vars=['nuareamont','cobacia'],value_vars=trechos_filtered.columns,var_name='mes')
 melted_trechos['mes'] = melted_trechos['mes'].map({
-        'new_q95_jan_ls': 'Janeiro',
-        'new_q95_fev_ls': 'Fevereiro',
-        'new_q95_mar_ls': 'Março',
-        'new_q95_abr_ls': 'Abril',
-        'new_q95_mai_ls': 'Maio',
-        'new_q95_jun_ls': 'Junho',
-        'new_q95_jul_ls': 'Julho',
-        'new_q95_ago_ls': 'Agosto',
-        'new_q95_set_ls': 'Setembro',
-        'new_q95_out_ls': 'Outubro',
-        'new_q95_nov_ls': 'Novembro',
-        'new_q95_dez_ls': 'Dezembro',
+        'q95_jan': 'Janeiro',
+        'q95_fev': 'Fevereiro',
+        'q95_mar': 'Março',
+        'q95_abr': 'Abril',
+        'q95_mai': 'Maio',
+        'q95_jun': 'Junho',
+        'q95_jul': 'Julho',
+        'q95_ago': 'Agosto',
+        'q95_set': 'Setembro',
+        'q95_out': 'Outubro',
+        'q95_nov': 'Novembro',
+        'q95_dez': 'Dezembro',
     })
 
 graph = px.line(melted_trechos,x='nuareamont',y='value',color='mes',hover_data={'cobacia':True})
